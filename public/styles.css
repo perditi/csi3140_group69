@@ -116,3 +116,7 @@ p{
 .project-overlay-text{
     margin: 5px 5px 5px 5px;
 }
+
+.tim-resume-box{
+    border-bottom:solid;
+}
