@@ -22,28 +22,61 @@ h1{
     margin: 15px 0px 15px 0px;
 }
 
+h2{
+    margin-top:0px;
+    font-size:40px;
+}
+
+p{
+    margin-top:0px;
+}
+
 .intros {
     display: flex;
-    width:100%;
+    width:inherit;
     flex-direction: row;
     align-content: center;
     justify-content: space-evenly;
-    padding: 30px 0px 0px 0px;
+    padding: 30px 10px 30px 10px;
+    gap:10px;
+    background-color: green;
+}
 
+.intro{
+    padding:0px 0px 0px 0px;
+    flex-basis:1;
+    width:40%;
+    background-color:red;
 }
 
 .resumes{
     display:flex;
-    width:100%;
+    width:inherit;
     flex-direction:row;
     align-content:center;
-    justify-content:center;
+    justify-content:space-evenly;
+    padding: 30px 0px 30px 0px;
+    gap:30px;
+    background-color: blue;
+}
+
+.resume{
+    background-color:red;
+    width:45%
 }
 
 .projects{
     display:flex;
-    width:100%;
+    width:inherit;
     flex-direction:row;
     align-content:center;
-    justify-content:center;
+    justify-content:space-evenly;
+    padding: 30px 0px 30px 0px;
+    gap:30px;
+    background-color: yellow;
+}
+
+.project{
+    width:27%;
+    background-color:red;
 }
