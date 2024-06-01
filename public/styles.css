@@ -24,7 +24,18 @@ h1{
 
 h2{
     margin-top:0px;
+    margin-bottom:0px;
     font-size:40px;
+}
+
+h3{
+    color: #000;
+    font-family: Inter;
+    font-size: 80px;
+    line-height: 100px;
+    font-style: italic;
+    font-weight:lighter;
+    margin:0px 0px 0px 15px;
 }
 
 p{
@@ -39,14 +50,12 @@ p{
     justify-content: space-evenly;
     padding: 30px 10px 30px 10px;
     gap:10px;
-    background-color: green;
 }
 
 .intro{
     padding:0px 0px 0px 0px;
     flex-basis:1;
     width:40%;
-    background-color:red;
 }
 
 .resumes{
@@ -55,14 +64,15 @@ p{
     flex-direction:row;
     align-content:center;
     justify-content:space-evenly;
-    padding: 30px 0px 30px 0px;
+    padding: 10px 0px 10px 0px;
     gap:30px;
     background-color: blue;
 }
 
 .resume{
     background-color:red;
-    width:45%
+    width:45%;
+    aspect-ratio:1/1.41;
 }
 
 .projects{
@@ -71,12 +81,13 @@ p{
     flex-direction:row;
     align-content:center;
     justify-content:space-evenly;
-    padding: 30px 0px 30px 0px;
+    padding: 10px 0px 10px 0px;
     gap:30px;
     background-color: yellow;
 }
 
 .project{
     width:27%;
+    aspect-ratio: 1/.8;
     background-color:red;
 }
