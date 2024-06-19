@@ -1,5 +1,7 @@
 var mysteryString;
 
+//TODO: fix so it takes capital letters as input (rn thinks they are invalid input)
+
 function str_input(){
     var input = document.getElementById("input").value.trim();
     if (!gameActive){//if the game hasn't started
