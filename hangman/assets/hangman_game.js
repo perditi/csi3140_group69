@@ -6,6 +6,7 @@ var hangmanState = 0; //number of wrong guesses, basically.
 function initGame(){
     gameActive = true;
     hangmanState = 0;
+    generateBlanks();
 }
 
 /*
@@ -55,5 +56,5 @@ function gameWin(){
 
 
 function gameLose(){
-    
+
 }
