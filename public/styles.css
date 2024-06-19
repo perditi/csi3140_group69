@@ -97,6 +97,16 @@ p{
     border-style:solid;
 }
 
+.project-window{
+    display:flex;
+    width:inherit;
+    flex-direction:column;
+    align-content:center;
+    justify-content:space-evenly;
+    padding: 0px 10px 0px 10px;
+    gap:30px;
+}
+
 .projects{
     display:flex;
     width:inherit;

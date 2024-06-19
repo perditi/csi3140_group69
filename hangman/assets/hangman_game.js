@@ -33,28 +33,34 @@ function updateGame(letterOrWord, correct){
     }
     if (correct){//correct guess
         if (letterOrWord == 1){//correct letter guess
-            //TODO: reveal letters. if all letters revealed, game win
         } else {//correct phrase guess
-            //TODO: implement game win
+            gameWin();
         }
     } else {//incorrect guess
-        if (letterOrWord == 1){//incorrect letter guess
-            hangmanState++;
-            //TODO: add letter to incorrect letter list.
-        } else {//incorrect phrase guess
-            hangmanState++;
-        }
+        hangmanState++;
         if (hangmanState == 6){
-            //TODO: implement game lose
+            gameLose();
         }
+    }
+    if (gameActive){
+        document.getElementById("stickman").innerHTML=hangmanState;
     }
 }
 
 function gameWin(){
-
+    gameActive = false;
+    console.log("gamewin called");
+    document.getElementById("stickman").innerHTML="You win!";
 }
 
-
 function gameLose(){
+    gameActive = false;
+    console.log("gamelose called");
+    document.getElementById("stickman").innerHTML="Better luck next time!";
+}
 
+function gameRestart(){
+    hangmanState = 0;
+    mysteryString = null;
+    reset_data();
 }

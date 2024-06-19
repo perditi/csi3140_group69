@@ -17,11 +17,18 @@ function guess(str){
     console.log("guess: %s",str)
     var letterOrWord = -1;
     var correct = null;
-    //TODO: cross ref with guessed list,  set letterOrWord to 0 if guessed already
+    if (checkIfGuessed(str)){
+        updateGame(0, correct);
+        return;
+    }
     if (str.length > 1){//guesses the whole word/phrase
         letterOrWord = 2;
         correct = equalsIgnoringCase(mysteryString, str);
     } else if (str.length == 1){// is just one letter, i.e. is a guess
+        if (GUESSES.indexOf(str.toLowerCase()) == -1){
+            updateGame(-1, correct);
+            return;
+        }
         letterOrWord = 1;
         correct = revealLetter(str);
     }
