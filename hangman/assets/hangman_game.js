@@ -33,7 +33,6 @@ function updateGame(letterOrWord, correct){
     }
     if (correct){//correct guess
         if (letterOrWord == 1){//correct letter guess
-            //TODO: reveal letters. if all letters revealed, game win
         } else {//correct phrase guess
             gameWin();
         }

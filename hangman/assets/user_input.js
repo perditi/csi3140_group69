@@ -25,7 +25,7 @@ function guess(str){
         letterOrWord = 2;
         correct = equalsIgnoringCase(mysteryString, str);
     } else if (str.length == 1){// is just one letter, i.e. is a guess
-        if (GUESSED.indexOf(str) == -1){
+        if (GUESSES.indexOf(str) == -1){
             updateGame(-1, correct);
             return;
         }
