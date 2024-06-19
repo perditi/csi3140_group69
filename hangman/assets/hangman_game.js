@@ -1,5 +1,3 @@
-var mysteryString;
-var gameArray;
 var gameActive = false;
 var hangmanState = 0; //number of wrong guesses, basically.
 // head (1), body (2), arm (3), arm (4), leg (5), leg (6). 6 wrong guesses.
@@ -49,4 +47,13 @@ function updateGame(letterOrWord, correct){
             //TODO: implement game lose
         }
     }
+}
+
+function gameWin(){
+
+}
+
+
+function gameLose(){
+    
 }
