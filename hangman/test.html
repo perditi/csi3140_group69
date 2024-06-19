@@ -10,28 +10,45 @@
         
         <title>Group 69's Hangman</title>
     </head>
+
 <body>
     <header>
         <h1>Hangman</h1>
     </header>
 
-<div class="section_a">
-    <p>
-        rules: reveal the phrase with as few guesses as possible <br>
-        if you take too many guesses, our buddy eric here dies :( 
-    </p>
+    <section>
+        <p>
+            rules: get a friend to pick a secret word/phrase <br>
+            try and reveal the phrase with as few guesses as possible <br>
+            if you take too many guesses, our buddy eric here dies :( 
+        </p>
 
-    <div class="hangman">
+
+        <!-- this is just here for now-->
+        <div id="hangman">
+            <div class="stick1"></div>
+                <div class="wrapper">
+                    <div class="head"></div>
+                    <div class="torso"></div>
+                    <div class="leftarm"></div>
+                    <div class="rightarm"></div>
+                    <div class="leftleg"></div>
+                    <div class="leftfoot"></div>
+                    <div class="rightleg"></div>
+                    <div class="rightfoot"></div>
+                </div>
+        </div>
+    </section>
 
 
-    </div>
 
-</div>
 
-<section>
-    <input type="text" id="input" name="user_input" placeholder="guess...">
-    <button type="button">Go on, guess</button>
-</section>
+    <section>
+        <!-- the innerhtml of both of these has to change after first click
+        first it is "set word + submit" and then "guess... + go on, guess"-->
+        <input type="text" id="input" name="user_input" placeholder="guess...">
+        <button type="button" name="guess_button">Go on, guess</button>
+    </section>
 
 
 
@@ -39,17 +56,7 @@
 
 
 
-<!-- this is just here for now-->
-<div class="wrapper">
-    <div class="head"></div>
-    <div class="torso"></div>
-    <div class="leftarm"></div>
-    <div class="rightarm"></div>
-    <div class="leftleg"></div>
-    <div class="leftfoot"></div>
-    <div class="rightleg"></div>
-    <div class="rightfoot"></div>
-</div>
+
 
 
 </html>
