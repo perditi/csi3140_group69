@@ -35,28 +35,25 @@ function updateGame(letterOrWord, correct){
         if (letterOrWord == 1){//correct letter guess
             //TODO: reveal letters. if all letters revealed, game win
         } else {//correct phrase guess
-            //TODO: implement game win
+            gameWin();
         }
     } else {//incorrect guess
-        if (letterOrWord == 1){//incorrect letter guess
-            hangmanState++;
-            //TODO: add letter to incorrect letter list.
-        } else {//incorrect phrase guess
-            hangmanState++;
-        }
+        hangmanState++;
         if (hangmanState == 6){
-            //TODO: implement game lose
+            gameLose();
         }
     }
+    document.getElementById("stickman").innerHTML=hangmanState;
 }
 
 function gameWin(){
-
+    console.log("gamewin called");
+    document.getElementById("body").innerHTML = "";
 }
 
-
 function gameLose(){
-
+    console.log("gamelose called");
+    document.getElementById("body").innerHTML = "";
 }
 
 function gameRestart(){

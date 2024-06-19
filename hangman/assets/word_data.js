@@ -23,7 +23,7 @@ function generateBlanks(){//for game start
 }
 
 function revealLetter(x){
-    guessed[GUESSES.indexOf(x)] = true;
+    markGuessed(x);
     var result = false;
     for (var i = 0; i < mStringAsArray.length; i++){
         if (equalsIgnoringCase(mStringAsArray[i],x)){
@@ -33,6 +33,10 @@ function revealLetter(x){
     }
     console.log("new blanks:", mStringBlanksIndices);
     return result;
+}
+
+function markGuessed(x){
+    guessed[GUESSES.indexOf(x)] = true;
 }
 
 function checkIfGuessed(x){
