@@ -1,7 +1,5 @@
 var mysteryString;
 
-//TODO: fix so it takes capital letters as input (rn thinks they are invalid input)
-
 function str_input(){
     var input = document.getElementById("input").value.trim();
     if (!gameActive){//if the game hasn't started
@@ -27,7 +25,7 @@ function guess(str){
         letterOrWord = 2;
         correct = equalsIgnoringCase(mysteryString, str);
     } else if (str.length == 1){// is just one letter, i.e. is a guess
-        if (GUESSES.indexOf(str) == -1){
+        if (GUESSES.indexOf(str.toLowerCase()) == -1){
             updateGame(-1, correct);
             return;
         }

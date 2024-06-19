@@ -42,7 +42,9 @@ function updateGame(letterOrWord, correct){
             gameLose();
         }
     }
-    document.getElementById("stickman").innerHTML=hangmanState;
+    if (gameActive){
+        document.getElementById("stickman").innerHTML=hangmanState;
+    }
 }
 
 function gameWin(){
