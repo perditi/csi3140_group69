@@ -66,22 +66,7 @@ button:hover {
     margin-left: 2%;
 }
 
-.jetbrains-mono-font {
-    font-family: "JetBrains Mono", monospace;
-    font-optical-sizing: auto;
-    font-style: normal;
-  }
 
-  
-
-
-
-
-
-
-
-
-  
 /* this is just here for now*/
 
 .wrapper {
@@ -90,26 +75,55 @@ button:hover {
     display: block;
     position: relative;
     animation-duration: 2s;
-    animation-iteration-count: infinite;
+    animation-iteration-count: 3;
     transform-origin: center top;
   }
   
   .wrapper:hover {
     animation-name: swing;
     animation-direction: alternate;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: linear;
+  }
+
+  .wrapper:hover .rightarm {
+    animation: wave2 1s alternate 5 ease-in-out;
   }
   
+  .wrapper:hover .leftarm{
+    animation: wave 1s alternate 5 ease-in-out;
+    animation-delay: 250ms;
+  }
+
+
   @keyframes swing {
     0% {
       transform: rotate(0);
     }
+    25% {
+      transform: rotate(5deg);
+    }
     50% {
-      transform: rotate(20deg);
+      transform: rotate(10deg);
     }
-    100% {
-      transform: rotate(-20deg);
+    75% {
+      transform: rotate(5deg);  
     }
+    /*
+    50% {
+      transform: rotate(0);
+    }
+    60% {
+      transform: rotate(-5deg);
+    }
+    70% {
+      transform: rotate(-10deg);  
+    }
+    90% {
+      transform: rotate(-5deg);  
+    }
+    100%{
+      transform: rotate(0);  
+    } */
   
   }
   
@@ -118,6 +132,7 @@ button:hover {
     height: 60px;
     border: 5px solid black;
     border-radius: 50%;
+    background-color: white;
     display: block;
     position: absolute;
     top: 21px;
@@ -129,6 +144,7 @@ button:hover {
     width: 6px;
     height: 100px;
     border: 3px solid black;
+    background-color: black;
     display: block;
     position: absolute;
     top: 80px;
@@ -139,6 +155,7 @@ button:hover {
     width: 6px;
     height: 100px;
     border: 3px solid black;
+    background-color: black;
     display: block;
     position: absolute;
     top: 175px;
@@ -151,6 +168,7 @@ button:hover {
     width: 6px;
     height: 100px;
     border: 3px solid black;
+    background-color: black;
     display: block;
     position: absolute;
     top: 175px;
@@ -163,20 +181,27 @@ button:hover {
     width: 100px;
     height: 6px;
     border: 3px solid black;
+    background-color: black;
     display: block;
     position: absolute;
     top: 86px;
     left: 57px;
-    animation: wave 1s alternate infinite ease-in-out;
+    /*animation: wave 1s alternate infinite ease-in-out;*/
     transform-origin: 100%;
   }
   
   @keyframes wave {
     0% {
-      transform: rotate(-20deg);
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(-20deg);  
+    }
+    80% {
+      transform: rotate(40deg);
     }
     100% {
-      transform: rotate(40deg);
+      transform: rotate(0deg);  
     }
   }
   
@@ -184,27 +209,37 @@ button:hover {
     width: 100px;
     height: 6px;
     border: 3px solid black;
+    background-color: black;
     display: block;
     position: absolute;
     top: 86px;
     left: 161px;
-    animation: wave2 1s alternate infinite ease-in-out;
+    /*animation: wave2 1s alternate infinite ease-in-out;*/
     transform-origin: 0%;
   }
+
   
   @keyframes wave2 {
     0% {
-      transform: rotate(20deg);
-    }
-    100% {
-      transform: rotate(-40deg);
-    }
+        transform: rotate(0);
+      }
+      50% {
+        transform: rotate(-20deg);  
+      }
+      80% {
+        transform: rotate(40deg);
+      }
+      100% {
+        transform: rotate(0deg);  
+      }
   }
+
   
   .leftfoot {
     width: 30px;
     height: 6px;
     border: 3px solid black;
+    background-color: black;
     display: block;
     position: absolute;
     top: 270px;
@@ -216,6 +251,7 @@ button:hover {
     width: 30px;
     height: 6px;
     border: 3px solid black;
+    background-color: black;
     display: block;
     position: absolute;
     top: 270px;
