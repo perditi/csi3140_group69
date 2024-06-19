@@ -48,17 +48,18 @@ function updateGame(letterOrWord, correct){
 }
 
 function gameWin(){
+    gameActive = false;
     console.log("gamewin called");
-    document.getElementById("body").innerHTML = "";
+    document.getElementById("stickman").innerHTML="You win!";
 }
 
 function gameLose(){
+    gameActive = false;
     console.log("gamelose called");
-    document.getElementById("body").innerHTML = "";
+    document.getElementById("stickman").innerHTML="Better luck next time!";
 }
 
 function gameRestart(){
-    gameActive = false;
     hangmanState = 0;
     mysteryString = null;
     reset_data();
