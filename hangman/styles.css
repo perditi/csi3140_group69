@@ -1,5 +1,35 @@
+body {
+    background-color: #88CDFF;
+}
 
+h1 {
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    font-size: 45px;
+    color:white; 
+}
 
+p {
+    color: #000;
+    font-family: "JetBrains Mono";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+} 
+
+.button {
+    color: #000;
+    font-family: "JetBrains Mono";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
 
 .jetbrains-mono-font {
     font-family: "JetBrains Mono", monospace;
