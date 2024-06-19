@@ -1,12 +1,11 @@
 var mysteryString;
-var gameArray;
 
 function str_input(){
     var input = document.getElementById("input").value.trim();
     if (!gameActive){//if the game hasn't started
         mysteryString = input;
         console.log("mysteryString received \"%s\"",mysteryString);
-        gameArray = Array.from(mysteryString);
+        mStringAsArray = Array.from(mysteryString);
         initGame();
     } else {
         guess(input);
@@ -24,7 +23,7 @@ function guess(str){
         correct = equalsIgnoringCase(mysteryString, str);
     } else if (str.length == 1){// is just one letter, i.e. is a guess
         letterOrWord = 1;
-        //TODO: find letter in mysteryString
+        correct = revealLetter(str);
     }
     console.log("sending", letterOrWord, correct, "to hangman_game.js");
     updateGame(letterOrWord, correct);
