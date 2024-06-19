@@ -16,41 +16,38 @@
         <h1>Hangman</h1>
     </header>
 
-    <section>
         <p>
             rules: get a friend to pick a secret word/phrase <br>
             try and reveal the phrase with as few guesses as possible <br>
             if you take too many guesses, our buddy eric here dies :( 
         </p>
 
-
-        <!-- this is just here for now-->
-        <div id="hangman">
-            <div class="stick1"></div>
-                <div class="wrapper">
-                    <div class="head"></div>
-                    <div class="torso"></div>
-                    <div class="leftarm"></div>
-                    <div class="rightarm"></div>
-                    <div class="leftleg"></div>
-                    <div class="leftfoot"></div>
-                    <div class="rightleg"></div>
-                    <div class="rightfoot"></div>
-                </div>
+        <div class="hangman">
+                <div class="stick2"></div>
+                <div class="stick3"></div>
+                <div class="stick4"></div>
+                    <div class="wrapper">
+                        <div class="stick1"></div>
+                        <div class="head"></div>
+                        <div class="torso"></div>
+                        <div class="leftarm"></div>
+                        <div class="rightarm"></div>
+                        <div class="leftleg"></div>
+                        <div class="leftfoot"></div>
+                        <div class="rightleg"></div>
+                        <div class="rightfoot"></div>
+                    </div>
         </div>
-    </section>
+
+    <div class="word_text">
+        ...
+    </div>
 
 
-
-
-    <section>
         <!-- the innerhtml of both of these has to change after first click
         first it is "set word + submit" and then "guess... + go on, guess"-->
-        <input type="text" id="input" name="user_input" placeholder="guess...">
-        <button type="button" name="guess_button">Go on, guess</button>
-    </section>
-
-
+        <input type="text" id="input" name="user_input" placeholder="set word...">
+        <button type="button" name="guess_button">Submit</button>
 
 </body>
 
