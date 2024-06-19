@@ -58,3 +58,10 @@ function gameWin(){
 function gameLose(){
 
 }
+
+function gameRestart(){
+    gameActive = false;
+    hangmanState = 0;
+    mysteryString = null;
+    reset_data();
+}
