@@ -3,12 +3,17 @@ var mStringBlanksIndices = Array(); //ex: [0, 0, 1, 1, 0, 0, 0]
 //mStringBlanksIndices would be rendered as  _ _ e   _ _ _ _
 //spaces are always revealed
 
-var guesses = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var guessed= [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+const GUESSES = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var guessed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+
+function reset_data(){//is called whenever a game restarts
+    guessed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+    mStringBlanksIndices = Array();
+}
 
 function generateBlanks(){//for game start
     for (var i = 0; i < mStringAsArray.length; i++){
-        if (!guesses.includes(mStringAsArray[i])){
+        if (!GUESSES.includes(mStringAsArray[i])){
             mStringBlanksIndices[i] = 1;
         } else {
             mStringBlanksIndices[i] = 0;
@@ -18,6 +23,7 @@ function generateBlanks(){//for game start
 }
 
 function revealLetter(x){
+    guessed[GUESSES.indexOf(x)] = true;
     var result = false;
     for (var i = 0; i < mStringAsArray.length; i++){
         if (equalsIgnoringCase(mStringAsArray[i],x)){
@@ -30,12 +36,6 @@ function revealLetter(x){
 }
 
 function checkIfGuessed(x){
-    var ind = -1;
-
+    return guessed[GUESSES.indexOf(x)];
 }
 
-function reset(){
-    guesses = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    guessed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
-    mStringBlanksIndices = Array();
-}
