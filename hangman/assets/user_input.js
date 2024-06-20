@@ -41,3 +41,14 @@ function guess(str){
 function equalsIgnoringCase(text, other) {
     return text.localeCompare(other, undefined, { sensitivity: 'base' }) === 0;
 }
+
+// Execute a function when the user presses a key on the keyboard
+document.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    str_input();
+    }
+});
