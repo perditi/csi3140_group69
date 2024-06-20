@@ -35,6 +35,9 @@ function updateGame(letterOrWord, correct){
     }
     if (correct){//correct guess
         if (letterOrWord == 1){//correct letter guess
+            if (isAllGuessed()){
+                gameWin();
+            }
         } else {//correct phrase guess
             gameWin();
         }
@@ -68,13 +71,17 @@ function gameRestart(){
 function changeTextBox(){
     if (gameActive){
         document.getElementById("input").placeholder = "set word...";
-        document.getElementById("input").value = "";
+        clearTextBox();
         document.getElementById("guess_button").innerHTML= "submit";
     } else {
         document.getElementById("input").placeholder = "guess...";
-        document.getElementById("input").value = "";
+        clearTextBox();
         document.getElementById("guess_button").innerHTML= "go on, guess";
     }
+}
+
+function clearTextBox(){
+    document.getElementById("input").value = "";
 }
 
 function ericInvisible(){

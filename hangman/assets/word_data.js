@@ -11,6 +11,13 @@ function reset_data(){//is called whenever a game restarts
     mStringBlanksIndices = Array();
 }
 
+function isAllGuessed(){
+    if (mStringBlanksIndices.indexOf(0) == -1){
+        return true;
+    }
+    return false;
+}
+
 function generateBlanks(){//for game start
     for (var i = 0; i < mStringAsArray.length; i++){
         if (!GUESSES.includes(mStringAsArray[i])){
