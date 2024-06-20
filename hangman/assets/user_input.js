@@ -22,7 +22,7 @@ function guess(str){
     console.log("guess: %s",str)
     var letterOrWord = -1;
     var correct = null;
-    if (checkIfGuessed(str)){
+    if (checkIfGuessed(str.toLowerCase())){
         updateGame(0, correct);
         return;
     }
