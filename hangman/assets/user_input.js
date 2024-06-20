@@ -3,6 +3,7 @@ var mysteryString;
 function str_input(){
     var input = document.getElementById("input").value.trim();
     if (!gameActive){//if the game hasn't started
+        changeTextBox();
         mysteryString = input;
         console.log("mysteryString received \"%s\"",mysteryString);
         mStringAsArray = Array.from(mysteryString);

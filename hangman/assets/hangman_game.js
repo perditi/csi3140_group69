@@ -50,17 +50,28 @@ function updateGame(letterOrWord, correct){
 function gameWin(){
     gameActive = false;
     console.log("gamewin called");
-    document.getElementById("stickman").innerHTML="You win!";
 }
 
 function gameLose(){
     gameActive = false;
     console.log("gamelose called");
-    document.getElementById("stickman").innerHTML="Better luck next time!";
 }
 
 function gameRestart(){
+    changeTextBox();
     hangmanState = 0;
     mysteryString = null;
     reset_data();
+}
+
+function changeTextBox(){
+    if (gameActive){
+        document.getElementById("input").placeholder = "set word...";
+        document.getElementById("input").value = "";
+        document.getElementById("guess_button").innerHTML= "submit";
+    } else {
+        document.getElementById("input").placeholder = "guess...";
+        document.getElementById("input").value = "";
+        document.getElementById("guess_button").innerHTML= "go on, guess";
+    }
 }
