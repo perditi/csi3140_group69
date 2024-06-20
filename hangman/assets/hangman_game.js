@@ -11,6 +11,9 @@ function initGame(){
     ericInvisible();
     generateBlanks();
     updateDisplay();
+    if (isAllGuessed()){
+        gameWin();
+    }
 }
 
 /*
@@ -64,7 +67,6 @@ function gameWin(){
     console.log("gamewin called");
     gameActive = false;
     changeTextBox();
-    console.log("middle");
     window.alert("You win!");
 }
 
