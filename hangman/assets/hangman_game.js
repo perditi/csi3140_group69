@@ -73,6 +73,7 @@ function gameLose(){
     gameActive = false;
     changeTextBox();
     window.alert("You lose!");
+    document.getElementById("display-text").innerHTML=mysteryString;
 }
 
 function winAlert(){
