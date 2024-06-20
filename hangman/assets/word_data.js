@@ -20,7 +20,7 @@ function isAllGuessed(){
 
 function generateBlanks(){//for game start
     for (var i = 0; i < mStringAsArray.length; i++){
-        if (!GUESSES.includes(mStringAsArray[i])){
+        if (!GUESSES.includes(mStringAsArray[i].toLowerCase())){
             mStringBlanksIndices[i] = 1;
         } else {
             mStringBlanksIndices[i] = 0;
