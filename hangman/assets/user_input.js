@@ -29,6 +29,12 @@ function guess(str){
     if (str.length > 1){//guesses the whole word/phrase
         letterOrWord = 2;
         correct = equalsIgnoringCase(mysteryString, str);
+        var testForInvalidChar = Array.from(str);
+        for (var i = 0; i < testForInvalidChar.length; i++){//if the string guess has an invalid character in it
+            if (GUESSES.indexOf(testForInvalidChar[i].toLowerCase()) == -1){
+                letterOrWord = -1;
+            }
+        }
     } else if (str.length == 1){// is just one letter, i.e. is a guess
         if (GUESSES.indexOf(str.toLowerCase()) == -1){
             updateGame(-1, correct);
