@@ -8,6 +8,7 @@ function initGame(){
     hangmanState = 0;
     ericInvisible();
     generateBlanks();
+    updateDisplay();
 }
 
 /*
@@ -44,6 +45,7 @@ function updateGame(letterOrWord, correct){
         }
     }
     updateEricVisiblity(hangmanState);
+    updateDisplay();
 }
 
 function gameWin(){
