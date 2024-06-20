@@ -6,6 +6,7 @@ var hangmanState = 0; //number of wrong guesses, basically.
 function initGame(){
     gameActive = true;
     hangmanState = 0;
+    ericInvisible();
     generateBlanks();
 }
 
@@ -42,9 +43,7 @@ function updateGame(letterOrWord, correct){
             gameLose();
         }
     }
-    if (gameActive){
-        document.getElementById("stickman").innerHTML=hangmanState;
-    }
+    updateEricVisiblity(hangmanState);
 }
 
 function gameWin(){
@@ -73,5 +72,45 @@ function changeTextBox(){
         document.getElementById("input").placeholder = "guess...";
         document.getElementById("input").value = "";
         document.getElementById("guess_button").innerHTML= "go on, guess";
+    }
+}
+
+function ericInvisible(){
+    document.getElementById("eric-head").style.visibility = "hidden";
+    document.getElementById("eric-torso").style.visibility = "hidden";
+    document.getElementById("eric-leftarm").style.visibility = "hidden";
+    document.getElementById("eric-rightarm").style.visibility = "hidden";
+    document.getElementById("eric-leftleg").style.visibility = "hidden";
+    document.getElementById("eric-rightleg").style.visibility = "hidden";
+    document.getElementById("eric-leftfoot").style.visibility = "hidden";
+    document.getElementById("eric-rightfoot").style.visibility = "hidden";
+}
+
+function updateEricVisiblity(n){
+    console.log("updating eric");
+    switch (n){
+        case 0:
+            ericInvisible();
+            break;
+        case 1:
+            document.getElementById("eric-head").style.visibility = "visible";
+            break;
+        case 2:
+            document.getElementById("eric-torso").style.visibility = "visible";
+            break;
+        case 3:
+            document.getElementById("eric-leftarm").style.visibility = "visible";
+            break;
+        case 4:
+            document.getElementById("eric-rightarm").style.visibility = "visible";
+            break;
+        case 5:
+            document.getElementById("eric-leftleg").style.visibility = "visible";
+            document.getElementById("eric-leftfoot").style.visibility = "visible";
+            break;
+        case 6:
+            document.getElementById("eric-rightleg").style.visibility = "visible";
+            document.getElementById("eric-rightfoot").style.visibility = "visible";
+            break;
     }
 }
