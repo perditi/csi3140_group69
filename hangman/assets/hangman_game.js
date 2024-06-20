@@ -6,6 +6,8 @@ var hangmanState = 0; //number of wrong guesses, basically.
 function initGame(){
     gameActive = true;
     hangmanState = 0;
+    changeTextBox();
+    reset_data();
     ericInvisible();
     generateBlanks();
     updateDisplay();
@@ -27,49 +29,58 @@ true is a correct guess
 function updateGame(letterOrWord, correct){
     if (letterOrWord == -1){
         console.log("invalid input");
+        window.alert("Invalid input!");
         return;
     }
     if (letterOrWord == 0){
         console.log("repeated guess");
+        window.alert("Repeated guess!");
         return;
     }
     if (correct){//correct guess
         if (letterOrWord == 1){//correct letter guess
+            updateDisplay();
             if (isAllGuessed()){
                 gameWin();
             }
         } else {//correct phrase guess
+            console.log("heere");
+            document.getElementById("display-text").innerHTML=mysteryString;
+            
+            console.log("heere2");
             gameWin();
+            console.log("heere3");
         }
     } else {//incorrect guess
         hangmanState++;
+        updateEricVisiblity(hangmanState);
         if (hangmanState == 6){
             gameLose();
         }
     }
-    updateEricVisiblity(hangmanState);
-    updateDisplay();
 }
 
 function gameWin(){
-    gameActive = false;
     console.log("gamewin called");
+    gameActive = false;
+    changeTextBox();
+    console.log("middle");
+    window.alert("You win!");
 }
 
 function gameLose(){
-    gameActive = false;
     console.log("gamelose called");
+    gameActive = false;
+    changeTextBox();
+    window.alert("You lose!");
 }
 
-function gameRestart(){
-    changeTextBox();
-    hangmanState = 0;
-    mysteryString = null;
-    reset_data();
+function winAlert(){
+    
 }
 
 function changeTextBox(){
-    if (gameActive){
+    if (!gameActive){
         document.getElementById("input").placeholder = "set word...";
         clearTextBox();
         document.getElementById("guess_button").innerHTML= "submit";
@@ -82,6 +93,7 @@ function changeTextBox(){
 
 function clearTextBox(){
     document.getElementById("input").value = "";
+    document.getElementById("input").focus();
 }
 
 function ericInvisible(){
@@ -93,6 +105,17 @@ function ericInvisible(){
     document.getElementById("eric-rightleg").style.visibility = "hidden";
     document.getElementById("eric-leftfoot").style.visibility = "hidden";
     document.getElementById("eric-rightfoot").style.visibility = "hidden";
+}
+
+function ericVisible(){
+    document.getElementById("eric-head").style.visibility = "visible";
+    document.getElementById("eric-torso").style.visibility = "visible";
+    document.getElementById("eric-leftarm").style.visibility = "visible";
+    document.getElementById("eric-rightarm").style.visibility = "visible";
+    document.getElementById("eric-leftleg").style.visibility = "visible";
+    document.getElementById("eric-rightleg").style.visibility = "visible";
+    document.getElementById("eric-leftfoot").style.visibility = "visible";
+    document.getElementById("eric-rightfoot").style.visibility = "visible";
 }
 
 function updateEricVisiblity(n){

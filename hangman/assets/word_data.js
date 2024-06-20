@@ -52,13 +52,18 @@ function checkIfGuessed(x){
 
 function updateDisplay(){
     var result = "";
-    for (var i = 0; i < mStringAsArray.length; i++){
-        if (mStringBlanksIndices[i] == 1){
-            result += mStringAsArray[i];
-        } else {
-            result += "_";
-        }
+    if (gameActive){
+        for (var i = 0; i < mStringAsArray.length; i++){
+            if (mStringBlanksIndices[i] == 1){
+                result += mStringAsArray[i];
+            } else {
+                result += "_";
+            }
+        }   
+    } else {
+        result = "...";
     }
+    
     document.getElementById("display-text").innerHTML=result;
 }
 
