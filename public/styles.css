@@ -11,8 +11,8 @@ header {
     display: inline-flex;
     padding: 0px 0px 0px 0px;
     justify-content: center;
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    background: #000;
+    box-shadow: 0px 0px 10px 0px rgba(256, 256, 256, 0.5);
 }
 footer {
     clip-path: polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%);
@@ -20,11 +20,14 @@ footer {
     display: inline-flex;
     padding: 0px 0px 0px 0px;
     justify-content: center;
-    background: #ffffff;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    background: #000;
+}
+
+a {
+    color: purple;
 }
 h1{
-    color: #000;
+    color: #FFFF;
     font-family: Inter;
     font-size: 80px;
     font-style: normal;
@@ -38,10 +41,11 @@ h2{
     margin-top:0px;
     margin-bottom:0px;
     font-size:40px;
+    color: white;
 }
 
 h3{
-    color: #000;
+    color: #FFFF;
     font-family: Inter;
     font-size: 80px;
     line-height: 100px;
@@ -54,16 +58,21 @@ h4 {
     font-style: bold;
     font-size:25px;
     margin-bottom:0%;
+    color:white;
+    font-weight:90;
 }
 
 hr { 
     margin: 10px 0 10px 0; 
+    color:white;
 }
 
 p{
     font-family: Inter;
     font-style:normal;
     margin-top:0px;
+    color: white;
+    font-size: 15px;
 }
 
 .intros {
@@ -74,6 +83,7 @@ p{
     justify-content: space-evenly;
     padding: 30px 10px 30px 10px;
     gap:10px;
+    box-shadow: 0px 0px 10px 0px rgba(256, 256, 256, 0.5);
 }
 
 .intro{
@@ -90,6 +100,7 @@ p{
     justify-content:space-evenly;
     padding: 10px 0px 10px 0px;
     gap:30px;
+    box-shadow: 0px 0px 10px 0px rgba(256, 256, 256, 0.5);
 }
 
 .resume{
@@ -122,11 +133,13 @@ p{
 .project{
     width:27%;
     aspect-ratio: 1/.8;
+    border-radius:20px;
     border-style:solid;
     border-color:rgb(29, 119, 255);
     box-shadow: 0px 0px 10px 0px rgba(29, 119, 255, 0.6);
     z-index:1;
     position:relative;
+    background: white;
 }
 
 .project-overlay{
@@ -135,11 +148,14 @@ p{
     bottom:0;
     width:100%;
     height:45%;
-    background-color:rgba(202, 202, 202, 0.925);
+    background-color:rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .project-overlay-text{
     margin: 5px 5px 5px 5px;
+    color: white;
 }
 
 .tim-resume-box{
