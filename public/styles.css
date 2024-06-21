@@ -3,6 +3,7 @@ body{
     margin: 0px 0px 0px 0px;
     display:flex;
     flex-direction:column;
+    background-color: #000;
 }
 header {
     clip-path: polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%);
