@@ -8,7 +8,102 @@ state of the game (the JavaScript should NOT calculate scores or track progress,
 You will track a game leaderboard showing your top 10 scores. For simplicity, this information 
 can also be stored in the PHP $_SESSION. */
 
+//gonna have this change so that there is a streak counter
+//so it becomes a streak of correctly answered hangmen
+
 session_start();
 header('Content-Type: application/json');
+
+// json reading
+$request = json_decode(file_get_contents('php://input'), true); //turns the info from the json into a php associative array
+$action = $request['action']; //eg; 'init' and 'guess'
+
+//game state stuff
+//the logic from the old js goes here essentially
+function initializeGame($word) {
+    $_SESSION['gameActive'] = true;
+    $_SESSION['hangmanState'] = 0;
+    $_SESSION['mysteryString'] = $word;
+    $_SESSION['mStringAsArray'] = str_split($word);
+    $_SESSION['guessed'] = array_fill(0, 26, false); //isn't this neat?
+    $_SESSION['mStringBlanksIndices'] = array_map(function($char) {
+        return ctype_alpha($char) ? 0 : 1;
+    }, $_SESSION['mStringAsArray']);
+}
+
+function updateGame($guess) {
+    $guess = strtolower($guess);
+    if (in_array($guess, $_SESSION['guessed'])) {
+        return ['error' => 'Repeated guess'];
+    }
+
+    $correct = false;
+    if (strlen($guess) > 1) {
+        $correct = strcasecmp($_SESSION['mysteryString'], $guess) === 0;
+        if ($correct) {
+            $_SESSION['mStringBlanksIndices'] = array_fill(0, count($_SESSION['mStringAsArray']), 1);
+        }
+    } else {
+        $_SESSION['guessed'][ord($guess) - ord('a')] = true;
+        foreach ($_SESSION['mStringAsArray'] as $i => $char) {
+            if (strcasecmp($char, $guess) === 0) {
+                $_SESSION['mStringBlanksIndices'][$i] = 1;
+                $correct = true;
+            }
+        }
+    }
+
+    if (!$correct) {
+        $_SESSION['hangmanState']++;
+    }
+
+    return ['correct' => $correct];
+}
+
+//action handling
+
+$response = [];
+
+switch ($action) {
+    case 'init':
+        initializeGame($request['word']);
+        $response = [
+            'gameActive' => $_SESSION['gameActive'],
+            'mStringBlanksIndices' => $_SESSION['mStringBlanksIndices']
+        ];
+        break;
+    case 'guess':
+        if ($_SESSION['gameActive']) {
+            $result = updateGame($request['guess']);
+            $response = array_merge($result, [
+                'gameActive' => $_SESSION['gameActive'],
+                'hangmanState' => $_SESSION['hangmanState'],
+                'mStringBlanksIndices' => $_SESSION['mStringBlanksIndices']
+            ]);
+            if ($_SESSION['hangmanState'] >= 6) {
+                $_SESSION['gameActive'] = false;
+                $response['gameOver'] = 'lose';
+            } elseif (!in_array(0, $_SESSION['mStringBlanksIndices'])) {
+                $_SESSION['gameActive'] = false;
+                $response['gameOver'] = 'win';
+            }
+        } else {
+            $response['error'] = 'Game is not active';
+        }
+        break;
+    case 'getState':
+        $response = [
+            'gameActive' => $_SESSION['gameActive'],
+            'hangmanState' => $_SESSION['hangmanState'],
+            'mStringBlanksIndices' => $_SESSION['mStringBlanksIndices']
+        ];
+        break;
+    default:
+        $response['error'] = 'Invalid action';
+        break;
+}
+
+echo json_encode($response);
+
 
 ?>
