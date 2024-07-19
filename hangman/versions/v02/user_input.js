@@ -79,6 +79,7 @@ function guess(str) {
                 gameActive = false;
                 changeTextBox();
                 window.alert("You " + response.gameOver + "!");
+                updateLeaderboard(response.leaderboard);
             }
         }
     };
@@ -154,4 +155,9 @@ function updateEricVisiblity(n){
             document.getElementById("eric-rightfoot").style.visibility = "visible";
             break;
     }
+}
+
+function updateLeaderboard(result){
+    document.getElementById("leaderboard-text").innerText = result;
+
 }
