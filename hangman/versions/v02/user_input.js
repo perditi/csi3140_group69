@@ -16,9 +16,23 @@ function str_input() { //input handler
     }
 }
 
+function changeTextBox(){
+    if (!gameActive){
+        document.getElementById("input").placeholder = "set word...";
+        clearTextBox();
+        document.getElementById("guess_button").innerHTML= "submit";
+    } else {
+        document.getElementById("input").placeholder = "guess...";
+        clearTextBox();
+        document.getElementById("guess_button").innerHTML= "go on, guess";
+    }
+}
+
 function initGame(word) { 
+    changeTextBox();
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'hangman.php', true);
+    console.log(word);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onreadystatechange = function() {

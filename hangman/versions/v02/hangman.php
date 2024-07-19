@@ -16,11 +16,21 @@ header('Content-Type: application/json');
 
 // json reading
 $request = json_decode(file_get_contents('php://input'), true); //turns the info from the json into a php associative array
-$action = $request['action']; //eg; 'init' and 'guess'
+
+if (isset($request['action'])) {
+    $action = $request['action']; // Line 19: 'action' key accessed here
+} else {
+    error_log("Action key not found in request");
+    echo json_encode(['error' => 'Invalid request']);
+    exit;
+}
+
+//$action = $request['action']; //eg; 'init' and 'guess'
 
 //game state stuff
 //the logic from the old js goes here essentially
 function initializeGame($word) {
+    print_r($word);
     $_SESSION['gameActive'] = true;
     $_SESSION['hangmanState'] = 0;
     $_SESSION['mysteryString'] = $word;
@@ -34,7 +44,7 @@ function initializeGame($word) {
 function updateGame($guess) {
     $guess = strtolower($guess);
     if (in_array($guess, $_SESSION['guessed'])) {
-        return ['error' => 'Repeated guess'];
+        return ['error' => 'Repeated guess!'];
     }
 
     $correct = false;
