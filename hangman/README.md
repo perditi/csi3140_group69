@@ -3,7 +3,7 @@
 
 see design system [here](docs/design_system.md)
 
-intended for Assignment 2; CSI3140
+intended for Assignment 3; CSI3140
 
 ### How the game works
 Play with two or more players (you can play with one player if you want, but why would you do that?).
@@ -16,4 +16,8 @@ For every incorrect guess, one of eric's body parts is added to the gallows. Whe
 
 In the event that the guesser discovers the secret phrase (either by individually guessing every letter, or by guessing the entire phrase), the guesser immediately wins and the game is over.
 
-Restart the game by pressing the restart button. Take turns picking secret phrases!
+The game will automatically restart, prompting for a new secret word.
+
+There is a leaderboard of the longest streak of wins, see if you can beat the high score!
+
+Recommended playstyle is the guesser should play as the guesser for as long as they can until they lose, then someone else can be the guesser. The winstreak will be recorded into the leaderboard.
