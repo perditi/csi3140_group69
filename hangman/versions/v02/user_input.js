@@ -6,6 +6,12 @@ function str_input() { //input handler
     var input = document.getElementById("input").value.trim();
     if (input.length < 1) {
         window.alert("Invalid input!");
+        clearTextBox();
+        return;
+    } else if (input.length == 1 && (input.toLowerCase() < "a" || input.toLowerCase() > "z")){
+        console.log("does this work?)");
+        window.alert("Invalid input!");
+        clearTextBox();
         return;
     }
     clearTextBox();
@@ -39,7 +45,7 @@ function initGame(word) {
             var response = JSON.parse(xhr.responseText);
             if (response.gameActive) {  //if game is active (from the php logic)
                 gameActive = true;
-                mysteryString = word.trim();
+                mysteryString = word;
                 updateDisplay(response.mStringBlanksIndices);
             }
         }
