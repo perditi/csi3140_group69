@@ -158,6 +158,7 @@ function updateEricVisiblity(n){
 }
 
 function updateLeaderboard(result){
+    console.log(result);
     document.getElementById("leaderboard-text").innerText = result;
 
 }
