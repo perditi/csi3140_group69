@@ -98,18 +98,6 @@ switch ($action) {
                 
                 //leaderboard updates if a streak exists
                 if($_SESSION['streak'] != 0){
-                    
-                    if(!isset($_SESSION['leaderboard'][0])){ //auto place if empty leaderboard
-                        $_SESSION['leaderboard'][0] = $_SESSION['streak'];
-                        break;
-                    } else { //actually find its position
-                        for($i=0; $i<10 ; $i++ ){
-                            if ($_SESSION['leaderboard'][$i]<$_SESSION['streak']) {
-
-                            }
-
-                        }
-                    }
 
                     $streakpos;
                     for($i = 0; $i < 10; $i++){
@@ -124,8 +112,7 @@ switch ($action) {
                         $newtemp = $_SESSION['leaderboard'][$i];
                         $_SESSION['leaderboard'][$i] = $temp;
                         $temp = $newtemp;
-                    }
-                    
+                    }    
 
                 }
 
