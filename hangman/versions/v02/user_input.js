@@ -35,6 +35,8 @@ function changeTextBox(){
 }
 
 function initGame(word) { 
+    ericInvisible();
+
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'hangman.php', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
