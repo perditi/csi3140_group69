@@ -14,6 +14,9 @@ can also be stored in the PHP $_SESSION. */
 session_start();
 header('Content-Type: application/json');
 
+$_SESSION['streak'] = 0;
+$_SESSION['leaderboard'] = []; //so as to not reset every game
+
 // json reading
 $request = json_decode(file_get_contents('php://input'), true); //turns the info from the json into a php associative array
 
@@ -92,9 +95,50 @@ switch ($action) {
             if ($_SESSION['hangmanState'] >= 6) {
                 $_SESSION['gameActive'] = false;
                 $response['gameOver'] = 'lose';
+                
+                //leaderboard updates if a streak exists
+                if($_SESSION['streak'] != 0){
+                    
+                    if(!isset($_SESSION['leaderboard'][0])){ //auto place if empty leaderboard
+                        $_SESSION['leaderboard'][0] = $_SESSION['streak'];
+                        break;
+                    } else { //actually find its position
+                        for($i=0; $i<10 ; $i++ ){
+                            if ($_SESSION['leaderboard'][$i]<$_SESSION['streak']) {
+
+                            }
+
+                        }
+                    }
+
+                    $streakpos;
+                    for($i = 0; $i < 10; $i++){
+                        if ($_SESSION['streak'] > $_SESSION['leaderboard'][$i]){
+                            $streakpos = $i;
+                            break;
+                        }
+                    }
+                    $temp = $_SESSION['leaderboard'][$streakpos];
+                    $_SESSION['leaderboard'][$streakpos] = $_SESSION['streak'];
+                    for ($i = $streakpos + 1; $i < 10; $i++){
+                        $newtemp = $_SESSION['leaderboard'][$i];
+                        $_SESSION['leaderboard'][$i] = $temp;
+                        $temp = $newtemp;
+                    }
+                    
+
+                }
+
+
+                //streak reset :()
+                $_SESSION['streak'] = 0; 
+
+                
+
             } elseif (!in_array(0, $_SESSION['mStringBlanksIndices'])) {
                 $_SESSION['gameActive'] = false;
                 $response['gameOver'] = 'win';
+                $_SESSION['streak']++; //streak gets added to :D
             }
         } else {
             $response['error'] = 'Game is not active';
