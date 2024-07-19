@@ -30,7 +30,6 @@ if (isset($request['action'])) {
 //game state stuff
 //the logic from the old js goes here essentially
 function initializeGame($word) {
-    print_r($word);
     $_SESSION['gameActive'] = true;
     $_SESSION['hangmanState'] = 0;
     $_SESSION['mysteryString'] = $word;
@@ -43,7 +42,7 @@ function initializeGame($word) {
 
 function updateGame($guess) {
     $guess = strtolower($guess);
-    if (in_array($guess, $_SESSION['guessed'])) {
+    if ($_SESSION['guessed'][ord($guess) - ord('a')] == true) {
         return ['error' => 'Repeated guess!'];
     }
 

@@ -29,17 +29,17 @@ function changeTextBox(){
 }
 
 function initGame(word) { 
-    changeTextBox();
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'hangman.php', true);
-    console.log(word);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
             var response = JSON.parse(xhr.responseText);
             if (response.gameActive) {  //if game is active (from the php logic)
                 gameActive = true;
+                mysteryString = word.trim();
                 updateDisplay(response.mStringBlanksIndices);
             }
         }
@@ -47,6 +47,7 @@ function initGame(word) {
 
     var data = JSON.stringify({ "action": "init", "word": word });
     xhr.send(data);
+    changeTextBox();
 }
 
 function guess(str) {
