@@ -23,11 +23,14 @@ function str_input() { //input handler
 }
 
 function changeTextBox(){
+    console.log("changing txt box");
     if (!gameActive){
+        console.log("game not active");
         document.getElementById("input").placeholder = "set word...";
         clearTextBox();
         document.getElementById("guess_button").innerHTML= "submit";
     } else {
+        console.log("game active");
         document.getElementById("input").placeholder = "guess...";
         clearTextBox();
         document.getElementById("guess_button").innerHTML= "go on, guess";
@@ -47,6 +50,7 @@ function initGame(word) {
             var response = JSON.parse(xhr.responseText);
             if (response.gameActive) {  //if game is active (from the php logic)
                 gameActive = true;
+                changeTextBox();
                 mysteryString = word;
                 updateDisplay(response.mStringBlanksIndices);
             }
@@ -55,7 +59,6 @@ function initGame(word) {
 
     var data = JSON.stringify({ "action": "init", "word": word });
     xhr.send(data);
-    changeTextBox();
 }
 
 function guess(str) {
@@ -74,6 +77,7 @@ function guess(str) {
             updateEricVisiblity(response.hangmanState);
             if (response.gameOver) {
                 gameActive = false;
+                changeTextBox();
                 window.alert("You " + response.gameOver + "!");
             }
         }
