@@ -18,6 +18,17 @@ h1 {
     color:white; 
 }
 
+h2 {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  font-size: 30px;
+  color: darkblue;
+
+}
+
 p {
     color: #000;
     font-family: "JetBrains Mono";
