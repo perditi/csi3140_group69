@@ -159,5 +159,7 @@ function updateEricVisiblity(n){
 
 function updateLeaderboard(result){
     console.log(result);
-    document.getElementById("leaderboard-text").innerText = result;
+    
+    const trackerList = document.getElementById('leaderboard-text');
+    trackerList.innerHTML = result.join('<br>');
 }

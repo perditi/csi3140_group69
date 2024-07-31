@@ -16,10 +16,13 @@ header('Content-Type: application/json');
 
 $db = new mysqli("127.0.0.1", "root", "password", "hangman", 3306);
 $db->query("CREATE TABLE IF NOT EXISTS Leaderboard (EntryID int NOT NULL AUTO_INCREMENT PRIMARY KEY,Score int);");
-$db->query("INSERT INTO Leaderboard VALUE (null, 0)");
+$db->query("INSERT INTO Leaderboard (EntryID, Score)
+            SELECT null, 0
+            WHERE (SELECT COUNT(*) FROM Leaderboard) = 0;");
+$db->close();
 
 $_SESSION['streak'] = 0;
-$_SESSION['leaderboard']; //so as to not reset every game
+$_SESSION['leaderboard'];
 
 // json reading
 $request = json_decode(file_get_contents('php://input'), true); //turns the info from the json into a php associative array
@@ -87,8 +90,10 @@ switch ($action) {
         initializeGame($request['word']);
         $response = [
             'gameActive' => $_SESSION['gameActive'],
-            'mStringBlanksIndices' => $_SESSION['mStringBlanksIndices']
+            'mStringBlanksIndices' => $_SESSION['mStringBlanksIndices'],
+            'leaderboard' => $_SESSION['leaderboard']
         ];
+        updateLeaderboard();
         break;
     case 'guess':
         if ($_SESSION['gameActive']) {
@@ -96,8 +101,10 @@ switch ($action) {
             $response = array_merge($result, [
                 'gameActive' => $_SESSION['gameActive'],
                 'hangmanState' => $_SESSION['hangmanState'],
-                'mStringBlanksIndices' => $_SESSION['mStringBlanksIndices']
+                'mStringBlanksIndices' => $_SESSION['mStringBlanksIndices'],
+                'leaderboard' => $_SESSION['leaderboard']
             ]);
+            
             if ($_SESSION['hangmanState'] >= 6) {
                 $_SESSION['gameActive'] = false;
                 $response['gameOver'] = 'lose';
@@ -133,7 +140,8 @@ switch ($action) {
         $response = [
             'gameActive' => $_SESSION['gameActive'],
             'hangmanState' => $_SESSION['hangmanState'],
-            'mStringBlanksIndices' => $_SESSION['mStringBlanksIndices']
+            'mStringBlanksIndices' => $_SESSION['mStringBlanksIndices'],
+            'leaderboard' => $_SESSION['leaderboard']
         ];
         break;
     default:
@@ -141,10 +149,18 @@ switch ($action) {
         break;
 }
 
-echo json_encode($response);
-
 function updateLeaderboard(){
     $db = new mysqli("127.0.0.1", "root", "password", "hangman", 3306);
-    $_SESSION['leaderboard'] = $db->query("SELECT * FROM Leaderboard ORDER BY Score DESC LIMIT 10;");
+    $s = $db->query("SELECT * FROM Leaderboard ORDER BY Score DESC LIMIT 10;");
+
+    $_SESSION['leaderboard'] = array();
+
+    if ($s->num_rows > 0) {
+        while($row = $s->fetch_assoc()) {
+            $_SESSION['leaderboard'][] = $row['Score'];
+        }
+    }
 }
+
+echo json_encode($response);
 ?>
