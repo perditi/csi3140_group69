@@ -16,9 +16,10 @@ header('Content-Type: application/json');
 
 $db = new mysqli("127.0.0.1", "root", "password", "hangman", 3306);
 $db->query("CREATE TABLE IF NOT EXISTS Leaderboard (EntryID int NOT NULL AUTO_INCREMENT PRIMARY KEY,Score int);");
+$db->query("INSERT INTO Leaderboard VALUE (null, 0)");
 
 $_SESSION['streak'] = 0;
-$_SESSION['leaderboard'] = []; //so as to not reset every game
+$_SESSION['leaderboard']; //so as to not reset every game
 
 // json reading
 $request = json_decode(file_get_contents('php://input'), true); //turns the info from the json into a php associative array
@@ -45,6 +46,7 @@ function initializeGame($word) {
     $_SESSION['mStringBlanksIndices'] = array_map(function($char) {
         return ctype_alpha($char) ? 0 : 1;
     }, $_SESSION['mStringAsArray']);
+    updateLeaderboard();
 }
 
 function updateGame($guess) {
@@ -100,15 +102,11 @@ switch ($action) {
                 $_SESSION['gameActive'] = false;
                 $response['gameOver'] = 'lose';
 
-                //leaderboard updates if a streak exists
-                if($_SESSION['streak'] != 0){
-                
-                    $db = new mysqli("127.0.0.1", "root", "password", "hangman", 3306);
-                    $db->query(sprintf("INSERT INTO Leaderboard VALUE (null, %d)",$_SESSION['streak']));
-                }
 
-                //streak reset :()
-                $_SESSION['streak'] = 0; 
+                
+                $db = new mysqli("127.0.0.1", "root", "password", "hangman", 3306);
+                $db->query("DELETE FROM Leaderboard WHERE Score = 0;");
+                $db->query("INSERT INTO Leaderboard VALUE (null, 0)");
 
                 
 
@@ -116,6 +114,16 @@ switch ($action) {
                 $_SESSION['gameActive'] = false;
                 $response['gameOver'] = 'win';
                 $_SESSION['streak']++; //streak gets added to :D
+                $q = "WITH MaxID AS (
+                            SELECT MAX(EntryID) AS id
+                            FROM Leaderboard
+                        )
+                            UPDATE Leaderboard
+                            JOIN MaxID ON Leaderboard.EntryID = MaxID.id
+                            SET Score = Score + 1;
+                        ";
+                $db = new mysqli("127.0.0.1", "root", "password", "hangman", 3306);
+                $db->query($q);
             }
         } else {
             $response['error'] = 'Game is not active';
@@ -135,4 +143,8 @@ switch ($action) {
 
 echo json_encode($response);
 
+function updateLeaderboard(){
+    $db = new mysqli("127.0.0.1", "root", "password", "hangman", 3306);
+    $_SESSION['leaderboard'] = $db->query("SELECT * FROM Leaderboard ORDER BY Score DESC LIMIT 10;");
+}
 ?>
