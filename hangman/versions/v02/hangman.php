@@ -14,11 +14,15 @@ can also be stored in the PHP $_SESSION. */
 session_start();
 header('Content-Type: application/json');
 
+$db = new mysqli("127.0.0.1", "root", "password", "hangman", 3306);
+$db->query("CREATE TABLE IF NOT EXISTS Leaderboard (EntryID int NOT NULL AUTO_INCREMENT PRIMARY KEY,Score int);");
+
 $_SESSION['streak'] = 0;
 $_SESSION['leaderboard'] = []; //so as to not reset every game
 
 // json reading
 $request = json_decode(file_get_contents('php://input'), true); //turns the info from the json into a php associative array
+
 
 if (isset($request['action'])) {
     $action = $request['action']; // Line 19: 'action' key accessed here
@@ -95,27 +99,13 @@ switch ($action) {
             if ($_SESSION['hangmanState'] >= 6) {
                 $_SESSION['gameActive'] = false;
                 $response['gameOver'] = 'lose';
-                
+
                 //leaderboard updates if a streak exists
                 if($_SESSION['streak'] != 0){
-
-                    $streakpos;
-                    for($i = 0; $i < 10; $i++){
-                        if ($_SESSION['streak'] > $_SESSION['leaderboard'][$i]){
-                            $streakpos = $i;
-                            break;
-                        }
-                    }
-                    $temp = $_SESSION['leaderboard'][$streakpos];
-                    $_SESSION['leaderboard'][$streakpos] = $_SESSION['streak'];
-                    for ($i = $streakpos + 1; $i < 10; $i++){
-                        $newtemp = $_SESSION['leaderboard'][$i];
-                        $_SESSION['leaderboard'][$i] = $temp;
-                        $temp = $newtemp;
-                    }    
-
+                
+                    $db = new mysqli("127.0.0.1", "root", "password", "hangman", 3306);
+                    $db->query(sprintf("INSERT INTO Leaderboard VALUE (null, %d)",$_SESSION['streak']));
                 }
-
 
                 //streak reset :()
                 $_SESSION['streak'] = 0; 
@@ -144,6 +134,5 @@ switch ($action) {
 }
 
 echo json_encode($response);
-
 
 ?>
