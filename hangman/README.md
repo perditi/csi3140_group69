@@ -21,3 +21,6 @@ The game will automatically restart, prompting for a new secret word.
 There is a leaderboard of the longest streak of wins, see if you can beat the high score!
 
 Recommended playstyle is the guesser should play as the guesser for as long as they can until they lose, then someone else can be the guesser. The winstreak will be recorded into the leaderboard.
+
+### Setting up the game
+Because the game uses a MySQL database, MySQL is needed to run the game. The game looks for a MySQL server hosted on 127.0.0.1 with port 3306 by default, with username "root" and password "password", with a database schema named "hangman". Once such a database is set up, then can the php server be run and the game played.
